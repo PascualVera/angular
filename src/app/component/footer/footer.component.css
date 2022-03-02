@@ -1,0 +1,22 @@
+.footer {
+  max-width: 100vw;
+  height: 10vh;
+  background-color: var(--blue);
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  
+}
+.rrss {
+  display: flex;
+  gap: 20px;
+}
+.rrss a {
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 19px;
+}
+.copyright {
+  color: aliceblue;
+}

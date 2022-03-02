@@ -1,0 +1,39 @@
+<main class="container">
+  <article class="profile_container">
+    <div class="head">
+      <figure class="img_container">
+        <img class="img_profile" src="../../../assets/img/Gandalf_the_Grey.jpg" alt="" />
+      </figure>
+      <h1 class="title">{{ newUser.getFullName() }}</h1>
+    </div>
+    <div class="info">
+      <span class="attr"
+        ><p>Nombre</p>
+        <input readonly class="input" type="text" value="{{ newUser.nombre }}"
+      /></span>
+      <span class="attr"
+        ><p>Apellidos</p>
+        <input readonly class="input" type="text " value="{{ newUser.apellidos }}" />
+      </span>
+      <span class="attr"
+        ><p>Correo</p>
+        <input readonly class="input" value="{{ newUser.correo }}" />
+      </span>
+    </div>
+  </article>
+  <article class="update_container">
+    <div class="form_container">
+      <form action="" class="form">
+        <input #nombre type="text" class="input" placeholder="Nombre" />
+        <input #apellidos type="text" class="input" placeholder="Apellidos" />
+        <input #password type="text" class="input" placeholder="Contraseña" />
+        <input #url type="text" class="input" placeholder="Url" />
+      </form>
+    </div>
+    
+    <button class="button" (click)="modify(nombre, apellidos, password, url, check)">
+      Update
+    </button>
+    <input class="respuesta" #check>
+  </article>
+</main>
