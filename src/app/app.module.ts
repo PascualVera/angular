@@ -11,9 +11,23 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
 import { DatosPerfilComponent } from './component/datos-perfil/datos-perfil.component';
+import { LibrosComponent } from './pages/libros/libros.component';
+
+import { BookIdPipe } from './pipes/book-id.pipe';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, FormularioRegistroComponent, RegistroComponent, PerfilComponent,  DatosPerfilComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    FormularioRegistroComponent,
+    RegistroComponent,
+    PerfilComponent,
+    DatosPerfilComponent,
+    LibrosComponent,
+    BookIdPipe,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
