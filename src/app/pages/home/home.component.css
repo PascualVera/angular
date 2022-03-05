@@ -46,7 +46,7 @@
   font-size: 70px;
   font-weight: bold;
   color: white;
-  animation: title 13s linear;
+  animation: title 11.5s linear;
 }
 
 @keyframes title {
@@ -62,7 +62,10 @@
   75% {
     opacity: 0;
   }
+  90% {
+    opacity: 0;
+  }
   100% {
-    background-position: 0% 0%;
+    opacity: 1;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Libro } from 'src/app/models/libro';
+import { LibrosService } from 'src/app/shared/libros.service';
 
 @Component({
   selector: 'app-libros',
@@ -10,33 +11,8 @@ import { Libro } from 'src/app/models/libro';
 export class LibrosComponent implements OnInit {
   public libros: Libro[];
   public book: Libro;
-  constructor() {
-    this.libros = [
-      new Libro(
-        'El Ultimo Deseo',
-        'Tapa dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-      new Libro(
-        'El Ultimo Deseo',
-        'Tapa Dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-      new Libro(
-        'El Ultimo Deseo',
-        'Tapa Dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-    ];
+  constructor(public librosService: LibrosService) {
+    this.libros = [];
   }
   addBook(
     bookId,
@@ -78,6 +54,23 @@ export class LibrosComponent implements OnInit {
       verified.value = 'Introduce todos los datos';
       verified.style.color = 'red';
     }
+  }
+  changeToAdd(add, update, btnUpd, btnAdd) {
+    add.style.display = 'flex';
+    update.style.display = 'none';
+    btnUpd.style.cssText += `
+    box-shadow: 1px -1px 5px 1px rgba(0, 0, 0, 0.582) inset;
+    `;
+    btnAdd.style.cssText += 'box-shadow: 0px 0px 0px 0px;';
+  }
+  changeToUpdate(add, update, btnUpd, btnAdd) {
+    add.style.display = 'none';
+    update.style.display = 'flex';
+    btnUpd.style.cssText += `
+      box-shadow: 0px 0px 0px 0px 
+    `;
+    btnAdd.style.cssText +=
+      'box-shadow: -1px -1px 5px 1px rgba(0, 0, 0, 0.582) inset;';
   }
 
   ngOnInit(): void {}

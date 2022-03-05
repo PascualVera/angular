@@ -1,58 +1,131 @@
 <main class="container">
-  <main class="form_container">
-    <form class="form" action="addBook">
-      <input
-        id="inputShort"
-        #bookId
-        type="text"
-        class="input"
-        placeholder="Book Id"
-      />
-      <input
-        id="inputShort"
-        #userId
-        type="text"
-        class="input"
-        placeholder="User Id"
-      />
-      <input
-        id="inputShort"
-        #price
-        type="text"
-        class="input"
-        placeholder="Price"
-      />
-      <input #title type="text" class="input" placeholder="Title" />
-      <input #type type="text" class="input" placeholder="Type" />
-      <input #author type="text" class="input" placeholder="Author" />
-
-      <input #photo type="text" class="input" placeholder="Photo (url)" />
-      <textarea
-        #sinopsis
-        type="text"
-        id="sinopsis"
-        placeholder="Sinopsis"
-      ></textarea>
-    </form>
-    <button
-      (click)="
-        addBook(
-          bookId,
-          userId,
-          title,
-          type,
-          author,
-          price,
-          photo,
-          sinopsis,
-          verified
-        )
-      "
-    >
-      Add book
-    </button>
-    <input readonly #verified class="verification" />
-  </main>
+  <article class="global_form_container">
+    <div class="button_container">
+      <button
+        #formShowAdd
+        (click)="changeToAdd(formAdd, formUpdate, formShowUpdate, formShowAdd)"
+        class="tag_add"
+      >
+        Add Book</button
+      ><button
+        #formShowUpdate
+        (click)="
+          changeToUpdate(formAdd, formUpdate, formShowUpdate, formShowAdd)
+        "
+        class="tag_update"
+      >
+        Modify book
+      </button>
+    </div>
+    <section #formAdd class="form_container_add">
+      <form class="form" action="addBook">
+        <input
+          id="inputShort"
+          #bookId
+          type="text"
+          class="input"
+          placeholder="Book Id"
+        />
+        <input
+          id="inputShort"
+          #userId
+          type="text"
+          class="input"
+          placeholder="User Id"
+        />
+        <input
+          id="inputShort"
+          #price
+          type="text"
+          class="input"
+          placeholder="Price"
+        />
+        <input #title type="text" class="input" placeholder="Title" />
+        <input #type type="text" class="input" placeholder="Type" />
+        <input #author type="text" class="input" placeholder="Author" />
+        <input #photo type="text" class="input" placeholder="Photo (url)" />
+        <textarea
+          #sinopsis
+          type="text"
+          id="sinopsis"
+          placeholder="Sinopsis"
+        ></textarea>
+      </form>
+      <button
+        class="button"
+        (click)="
+          addBook(
+            bookId,
+            userId,
+            title,
+            type,
+            author,
+            price,
+            photo,
+            sinopsis,
+            verified
+          )
+        "
+      >
+        Add book
+      </button>
+      <input readonly #verified class="verification" />
+    </section>
+    <section #formUpdate class="form_container_update">
+      <form class="form" action="addBook">
+        <input
+          id="inputShort"
+          #bookId
+          type="text"
+          class="input"
+          placeholder="Book Id"
+        />
+        <input
+          id="inputShort"
+          #userId
+          type="text"
+          class="input"
+          placeholder="User Id"
+        />
+        <input
+          id="inputShort"
+          #price
+          type="text"
+          class="input"
+          placeholder="Price"
+        />
+        <input #title type="text" class="input" placeholder="Title" />
+        <input #type type="text" class="input" placeholder="Type" />
+        <input #author type="text" class="input" placeholder="Author" />
+        <input #photo type="text" class="input" placeholder="Photo (url)" />
+        <textarea
+          #sinopsis
+          type="text"
+          id="sinopsis"
+          placeholder="Sinopsis"
+        ></textarea>
+      </form>
+      <button
+        class="button"
+        (click)="
+          addBook(
+            bookId,
+            userId,
+            title,
+            type,
+            author,
+            price,
+            photo,
+            sinopsis,
+            verified
+          )
+        "
+      >
+        Add book
+      </button>
+      <input readonly #verified class="verification" />
+    </section>
+  </article>
 
   <div class="books_container">
     <h1 *ngIf="libros.length === 0">No hay libros</h1>

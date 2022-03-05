@@ -8,6 +8,7 @@
   background-color: azure;
   padding: 20px;
 }
+/* Store layout*/
 .books_container {
   display: flex;
   width: 70%;
@@ -27,7 +28,6 @@
   border-radius: 10px;
   margin-top: 30px;
 }
-
 .img_container {
   height: 420px;
   width: 90%;
@@ -73,7 +73,7 @@
 .sinopsis {
   margin-top: 40px;
   height: 500px;
-  margin: 30px 30px 30px 10px;
+  margin: 40px 30px 30px 10px;
   padding: 10px;
 }
 
@@ -82,9 +82,9 @@
   border: none;
   outline: none;
   width: 180px;
-  height: 40px;
+  min-height: 40px;
   color: aliceblue;
-  font-size: 20px;
+  font-size: 22px;
   border-radius: 6px;
   font-weight: bold;
 }
@@ -96,7 +96,7 @@
   border: none;
   outline: none;
   width: 180px;
-  height: 40px;
+  min-height: 40px;
   color: aliceblue;
   font-size: 20px;
   border-radius: 6px;
@@ -105,7 +105,56 @@
 .even:hover {
   background-color: var(--neutralblue);
 }
-.form_container {
+
+/*Forms layout*/
+.global_form_container {
+  position: relative;
+  width: 400px;
+  position: fixed;
+  left: 10px;
+}
+.button_container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 60%;
+  margin-bottom: 10px;
+}
+.tag_add {
+  width: 100px;
+  border: none;
+  height: 30px;
+  border-top-left-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.281);
+  font-weight: bold;
+  cursor: pointer;
+}
+.tag_update {
+  width: 100px;
+  border: none;
+  height: 30px;
+  border-top-right-radius: 10px;
+  background-color: rgba(0, 0, 255, 0.308);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 4px -4px 10px 0.1px rgba(0, 0, 0, 0.582) inset;
+}
+.form_container_add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  width: 400px;
+  height: 500px;
+  background-color: rgba(128, 128, 128, 0.281);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  margin-top: 30px;
+  z-index: 1;
+}
+.form_container_update {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,17 +163,21 @@
   height: 500px;
   position: fixed;
   left: 10px;
-  background-color: rgba(128, 128, 128, 0.281);
-  border-radius: 1rem;
+  background-color: rgba(0, 0, 255, 0.308);
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   margin-top: 30px;
+  display: none;
 }
 .form {
   display: flex;
   flex-wrap: wrap;
-  height: 80%;
+  min-height: 80%;
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  margin-top: 30px;
 }
 #inputShort {
   width: 100px;
@@ -160,15 +213,15 @@
   text-align: center;
   font-size: 17px;
 }
-button {
+.button {
   width: 120px;
-  height: 35px;
+  min-height: 35px;
   border: none;
   cursor: pointer;
   margin-top: 10px;
   font-size: 16px;
   border-radius: 10px;
 }
-button:hover {
+.button:hover {
   background-color: var(--neutralblue);
 }
