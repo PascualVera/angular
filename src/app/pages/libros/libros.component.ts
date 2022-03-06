@@ -12,7 +12,7 @@ export class LibrosComponent implements OnInit {
   public libros: Libro[];
   public book: Libro;
   constructor(public librosService: LibrosService) {
-    this.libros = [];
+    this.libros = this.librosService.getAll();
   }
   addBook(
     bookId,
@@ -38,6 +38,8 @@ export class LibrosComponent implements OnInit {
     let filterResults = arrValues.filter((val) => val.value != '');
     if (filterResults.length == 8) {
       let book = new Libro(
+        bookId.value,
+        userId.value,
         title.value,
         type.value,
         author.value,
@@ -45,14 +47,51 @@ export class LibrosComponent implements OnInit {
         photo.value,
         sinopsis.value
       );
-      book.id_libro = bookId.value;
-      book.id_usuario = userId.value;
-      this.libros.push(book);
-      verified.value = 'Libro añadido correctamente';
+
+      verified.value = 'Libro añadido ';
       verified.style.color = 'green';
+      this.librosService.add(book);
     } else {
       verified.value = 'Introduce todos los datos';
       verified.style.color = 'red';
+    }
+  }
+  updateBook(
+    bookId,
+    userId,
+    title,
+    type,
+    author,
+    price,
+    photo,
+    sinopsis,
+    verified
+  ) {
+    let book = new Libro(
+      bookId.value,
+      userId.value,
+      title.value,
+      type.value,
+      author.value,
+      price.value,
+      photo.value,
+      sinopsis.value
+    );
+    this.librosService.update(book);
+    verified.value = 'Libro añadido ';
+    verified.style.color = 'green';
+  }
+  delete(idNumber) {
+    this.librosService.delete(idNumber);
+  }
+  search(id) {
+    this.libros = this.librosService.getAll();
+    if (id.value != '') {
+      for (const libro of this.libros) {
+        if (libro.id_libro == id.value) {
+          this.libros = [libro];
+        }
+      }
     }
   }
   changeToAdd(add, update, btnUpd, btnAdd) {

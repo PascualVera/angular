@@ -75,31 +75,31 @@
       <form class="form" action="addBook">
         <input
           id="inputShort"
-          #bookId
+          #bookIdEdit
           type="text"
           class="input"
           placeholder="Book Id"
         />
         <input
           id="inputShort"
-          #userId
+          #userIdEdit
           type="text"
           class="input"
           placeholder="User Id"
         />
         <input
           id="inputShort"
-          #price
+          #priceEdit
           type="text"
           class="input"
           placeholder="Price"
         />
-        <input #title type="text" class="input" placeholder="Title" />
-        <input #type type="text" class="input" placeholder="Type" />
-        <input #author type="text" class="input" placeholder="Author" />
-        <input #photo type="text" class="input" placeholder="Photo (url)" />
+        <input #titleEdit type="text" class="input" placeholder="Title" />
+        <input #typeEdit type="text" class="input" placeholder="Type" />
+        <input #authorEdit type="text" class="input" placeholder="Author" />
+        <input #photoEdit type="text" class="input" placeholder="Photo (url)" />
         <textarea
-          #sinopsis
+          #sinopsisEdit
           type="text"
           id="sinopsis"
           placeholder="Sinopsis"
@@ -108,41 +108,59 @@
       <button
         class="button"
         (click)="
-          addBook(
-            bookId,
-            userId,
-            title,
-            type,
-            author,
-            price,
-            photo,
-            sinopsis,
-            verified
+          updateBook(
+            bookIdEdit,
+            userIdEdit,
+            titleEdit,
+            typeEdit,
+            authorEdit,
+            priceEdit,
+            photoEdit,
+            sinopsisEdit,
+            verifiedEdit
           )
         "
       >
-        Add book
+        Edit book
       </button>
-      <input readonly #verified class="verification" />
+      <input readonly #verifiedEdit class="verification" />
     </section>
   </article>
 
   <div class="books_container">
+    <div class="searchbar">
+      <input
+        #idSearchBook
+        type="text"
+        placeholder="Find a book using ref number"
+      />
+      <button (click)="search(idSearchBook)">Search</button>
+    </div>
+
     <h1 *ngIf="libros.length === 0">No hay libros</h1>
     <article class="book" *ngFor="let book of libros; let e = even">
       <figure class="img_container">
         <img class="img" src="{{ book.photo }}" alt="" />
       </figure>
-      <div class="book_specs">
-        <p class="type">{{ book.tipoLibro }}</p>
-        <h3>{{ book.titulo }}</h3>
-        <p class="author">{{ book.autor }}</p>
-        <p class="price">{{ book.precio }} €</p>
-        <p class="ref">{{ book.id_libro | bookId }}</p>
-
-        <button [ngClass]="e ? 'even' : 'odd'">Comprar</button>
+      <div class="info_container">
+        <div class="book_specs">
+          <p class="type">{{ book.tipoLibro }}</p>
+          <h3>{{ book.titulo }}</h3>
+          <p class="author">{{ book.autor }}</p>
+          <div class="pricing">
+            <p #idNumberDel class="ref">{{ book.id_libro | bookId }}</p>
+            <p class="price">{{ book.precio }} €</p>
+          </div>
+        </div>
         <div class="sinopsis">
           <p>{{ book.sinopsis }}</p>
+
+          <div class="btn_card_container">
+            <button [ngClass]="e ? 'even' : 'odd'">Comprar</button>
+            <button (click)="delete(book.id_libro)">
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </div>
         </div>
       </div>
     </article>
