@@ -12,7 +12,10 @@ export class LibrosComponent implements OnInit {
   public libros: Libro[];
   public book: Libro;
   constructor(public librosService: LibrosService) {
-    this.libros = this.librosService.getAll();
+    librosService.getAll().subscribe((data: Libro[]) => {
+      this.libros = data;
+      console.log(data);
+    });
   }
   addBook(
     bookId,
@@ -47,10 +50,13 @@ export class LibrosComponent implements OnInit {
         photo.value,
         sinopsis.value
       );
-
+      console.log(book);
       verified.value = 'Libro añadido ';
       verified.style.color = 'green';
-      this.librosService.add(book);
+      this.librosService.add(book).subscribe((data: Libro) => {
+        console.log(data[0]);
+        this.libros.push(data[0]);
+      });
     } else {
       verified.value = 'Introduce todos los datos';
       verified.style.color = 'red';
@@ -67,33 +73,61 @@ export class LibrosComponent implements OnInit {
     sinopsis,
     verified
   ) {
-    let book = new Libro(
-      bookId.value,
-      userId.value,
-      title.value,
-      type.value,
-      author.value,
-      price.value,
-      photo.value,
-      sinopsis.value
-    );
-    this.librosService.update(book);
-    verified.value = 'Libro añadido ';
-    verified.style.color = 'green';
+    this.librosService.getOne(bookId.value).subscribe((data: Libro[]) => {
+      console.log(data);
+      let book = data[0];
+      if (userId.value != '') {
+        book.id_usuario = userId.value;
+      }
+      if (title.value != '') {
+        book.titulo = title.value;
+      }
+      if (type.value != '') {
+        book.tipoLibro = type.value;
+      }
+      if (author.value != '') {
+        book.autor = author.value;
+      }
+      if (price.value != '') {
+        book.precio = price.value;
+      }
+      if (photo.value != '') {
+        book.photo = photo.value;
+      }
+      if (sinopsis.value != '') {
+        book.sinopsis = sinopsis.value;
+      }
+      this.librosService.update(book).subscribe((data) => {
+        console.log(data);
+        verified.value = 'Libro modificado';
+        verified.style.color = 'green';
+        this.librosService.getAll().subscribe((data: Libro[]) => {
+          this.libros = data;
+        });
+      });
+    });
   }
   delete(idNumber) {
-    this.librosService.delete(idNumber);
+    this.librosService.delete(idNumber).subscribe((data) => {
+      console.log(data);
+      this.librosService.getAll().subscribe((data: Libro[]) => {
+        this.libros = data;
+      });
+    });
   }
   search(id) {
-    this.libros = this.librosService.getAll();
-    if (id.value != '') {
-      for (const libro of this.libros) {
-        if (libro.id_libro == id.value) {
-          this.libros = [libro];
-        }
+    this.librosService.getAll().subscribe((data: Libro[]) => {
+      this.libros = data;
+      if (id.value != '') {
+        let bookFiltered = this.libros.filter((val) => {
+          return val.id_libro == id.value;
+        });
+        this.libros = bookFiltered;
+        console.log(this.libros);
       }
-    }
+    });
   }
+
   changeToAdd(add, update, btnUpd, btnAdd) {
     add.style.display = 'flex';
     update.style.display = 'none';

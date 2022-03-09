@@ -1,10 +1,12 @@
 <article class="form_container">
   <form class="form" action="register">
-    <input type="text" class="input" placeholder="User" />
-    <input type="text" class="input" placeholder="Name" />
-    <input type="text" class="input" placeholder="E-mail" />
-    <input type="text" class="input" placeholder="Password" />
-    <input type="text" class="input" placeholder="Repeat password" />
+    <input #foto type="text" class="input" placeholder="Foto" />
+    <input #name type="text" class="input" placeholder="Name" />
+    <input #apellidos type="text" class="input" placeholder="Apellidos" />
+    <input #mail type="text" class="input" placeholder="E-mail" />
+    <input #password type="text" class="input" placeholder="Password" />
+    <input #passCheck type="text" class="input" placeholder="Repeat password" />
+    <input #verified class="verified" type="text">
   </form>
-  <button class="button">Sign up</button>
+  <button class="button" (click)="registrar(foto,name,apellidos,mail,password,passCheck,verified)">Sign up</button>
 </article>

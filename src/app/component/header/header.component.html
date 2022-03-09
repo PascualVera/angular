@@ -1,9 +1,14 @@
 <header class="header">
   <h3 class="title">ALEJANDRIA</h3>
-  <nav class="navbar">
+
+  <nav class="navbar" *ngIf="usuarioService.logueado == false; else logueado">
     <a routerLink="" class="links">Home</a>
     <a routerLink="registro" class="links">Register</a>
-    <a routerLink="perfil" class="links">Profile</a>
-    <a routerLink="libros" class="links">Books</a>
+    <a routerLink="login" class="links">Login</a>
   </nav>
+  <ng-template  #logueado class="navbar">
+    <navbar class="navbar"> <a routerLink="perfil" class="links">Profile</a>
+      <a routerLink="libros" class="links">Books</a></navbar>
+    
+  </ng-template>
 </header>

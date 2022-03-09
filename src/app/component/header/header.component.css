@@ -21,7 +21,7 @@
   justify-content: space-around;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .title {
@@ -31,6 +31,8 @@
 .navbar {
   display: flex;
   gap: 22px;
+  justify-content: center;
+  align-items: center;
 }
 
 .links {

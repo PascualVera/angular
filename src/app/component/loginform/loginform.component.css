@@ -1,0 +1,38 @@
+.form_container{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border: 1px solid gray;
+  min-height: 400px;
+  width:300px;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 0px 10px 2px gray;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
+}
+input{
+  border: none;
+  border-bottom: 1px solid gray ;
+  font-size: 18px;
+  width: 200px;
+  height: 40px;
+  padding-left: 5px;
+  outline: none;
+}
+button{
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+button:hover{
+  color: aliceblue;
+  background-color: gray;
+}

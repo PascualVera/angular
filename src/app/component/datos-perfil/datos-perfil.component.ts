@@ -11,7 +11,6 @@ export class DatosPerfilComponent implements OnInit {
   public newUser: Usuario;
   constructor() {
     this.newUser = new Usuario(
-      1,
       'Gandalf',
       'El Gris',
       'gandalf.994@yahoo.es',
@@ -36,7 +35,7 @@ export class DatosPerfilComponent implements OnInit {
     this.newUser.nombre = name.value == '' ? this.newUser.nombre : name.value;
     this.newUser.apellidos = apellidos.value == '' ? this.newUser.apellidos : apellidos.value;
     this.newUser.password = password.value == '' ?this.newUser.password : password.value;
-    this.newUser.url = url.value == '' ?this.newUser.url : url.value;
+    this.newUser.foto = url.value == '' ?this.newUser.foto : url.value;
     check.value = 'Usuario actualizado'
     check.style.color = 'green'
   }

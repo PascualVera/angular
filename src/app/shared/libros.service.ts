@@ -1,78 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Libro } from '../models/libro';
-import { LibrosComponent } from '../pages/libros/libros.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LibrosService {
-  private libros: Libro[];
+  private libros;
   public book: Libro;
-  constructor() {
-    this.libros = [
-      new Libro(
-        1,
-        1,
-        'El Ultimo Deseo',
-        'Tapa dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-      new Libro(
-        2,
-        2,
-        'El Ultimo Deseo',
-        'Tapa Dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-      new Libro(
-        3,
-        3,
-        'El Ultimo Deseo',
-        'Tapa Dura',
-        'Andrzej Sapkowski',
-        15,
-        'https://images-na.ssl-images-amazon.com/images/I/91GB9hUvdmL.jpg',
-        `Geralt de Rivia, brujo y mutante sobrehumano, se gana la vida como cazador de monstruos en una tierra de magia y maravilla: con sus dos espadas al hombro -la de acero para hombres, y la de plata para bestias`
-      ),
-    ];
+  private url = 'http://localhost:3000/libros';
+  constructor(private http: HttpClient) {
+    this.libros;
   }
-  getAll(): Libro[] {
-    return this.libros;
+  getAll(): Observable<object> {
+    return this.http.get(this.url);
   }
-  getOne(id_libro: number): Libro {
-    console.log(id_libro);
-    for (let libro of this.libros) {
-      if (libro.id_libro == id_libro) {
-        return libro;
-      }
-    }
-    return null;
+  getOne(id_libro: string): Observable<Object> {
+    return this.http.get(this.url + '?id=' + id_libro);
   }
-  add(libro: Libro) {
-    this.libros.push(libro);
+  add(libro: Libro): Observable<Object> {
+    return this.http.post(this.url, libro);
   }
-  update(libro: Libro): boolean {
-    for (let i = 0; i < this.libros.length; i++) {
-      if (libro.id_libro == this.libros[i].id_libro) {
-        this.libros[i] = libro;
-        return true;
-      }
-    }
-    return false;
+  update(libro: Libro) {
+    return this.http.put(this.url, libro);
   }
-  delete(idNumber: number): boolean {
-    for (let i = 0; i < this.libros.length; i++) {
-      if (this.libros[i].id_libro == idNumber) {
-        this.libros.splice(i, 1);
-        return true;
-      }
-    }
-    return false;
+  delete(idNumber: string) {
+    return this.http.delete(this.url + '?id=' + idNumber);
   }
 }

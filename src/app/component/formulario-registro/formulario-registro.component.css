@@ -37,3 +37,6 @@
   background-color: grey;
   color: white;
 }
+.verified{
+  display: none;
+}
